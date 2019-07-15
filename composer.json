@@ -1,6 +1,6 @@
 {
-  "name": "raiym/instagram-php-scraper",
-  "description": "Instagram PHP Scraper. Get account information, photos and videos without any authorization",
+  "name": "felipe-tonon/instagram-php-scraper",
+  "description": "*Forked from Raiym's package**Instagram PHP Scraper. Get account information, photos and videos without any authorization",
   "keywords": [
     "instagram",
     "scraper"
