@@ -1146,7 +1146,7 @@ class Instagram
      * @return array
      * @throws InstagramException
      */
-    public function getFollowers($accountId, $count = 20, $pageSize = 20, $delayed = true)
+    public function getFollowers($accountId, $count = 20, $pageSize = 20, $delayed = true, $callbackFunction)
     {
         if ($delayed) {
             set_time_limit($this->pagingTimeLimitSec);
@@ -1192,6 +1192,8 @@ class Instagram
             } else {
                 break;
             }
+
+            $callbackFunction($edgesArray);
 
             if ($delayed) {
                 // Random wait between 1 and 3 sec to mimic browser
@@ -1356,7 +1358,10 @@ class Instagram
             }
             $cookies = $this->parseCookies($response->headers);
 
-            $mid = $cookies['mid'];
+            $mid = '';
+            if ($cookies) {
+                $mid = $cookies['mid'];
+            }
             $headers = [
                 'cookie' => "ig_cb=1; csrftoken=$csrfToken; mid=$mid;",
                 'referer' => Endpoints::BASE_URL . '/',
